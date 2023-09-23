@@ -1,0 +1,16 @@
+total 8
+-rw-rw-r-- 1 dac dac  0 Sep 16 22:56 out.txt
+-rwxrw-r-- 1 dac dac 26 Sep 16 22:38 text1.sh
+-rw-rw-r-- 1 dac dac 26 Sep 16 22:44 text2.txt
+total 8
+-rw-rw-r-- 1 dac dac  0 Sep 16 22:56 out.txt
+-rwxrw-r-- 1 dac dac 26 Sep 16 22:38 text1.sh
+-rw-rw-r-- 1 dac dac 26 Sep 16 22:44 text2.txt
+total 8
+-rw-rw-r-- 1 dac dac  0 Sep 16 22:56 out.txt
+-rwxrw-r-- 1 dac dac 26 Sep 16 22:38 text1.sh
+-rw-rw-r-- 1 dac dac 26 Sep 16 22:44 text2.txt
+total 8
+-rw-rw-r-- 1 dac dac  0 Sep 16 22:56 out.txt
+-rwxrw-r-- 1 dac dac 26 Sep 16 22:38 text1.sh
+-rw-rw-r-- 1 dac dac 26 Sep 16 22:44 text2.txt

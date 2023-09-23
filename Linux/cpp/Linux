@@ -1,0 +1,16 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	char c1 = 'a';
+	char c2 = 'a';
+
+	string s="";
+	s += c1; 
+	s += c2; 
+
+	cout << s;
+
+
+}

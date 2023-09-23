@@ -1,0 +1,7 @@
+total 12
+-rw-rw-r-- 1 dac dac   2 Sep 16 23:19 abc.txt
+-rw-rw-r-- 1 dac dac   0 Sep 16 23:17 abhi.doc
+-rw-rw-r-- 1 dac dac 584 Sep 16 22:57 out.txt
+-rw-rw-r-- 1 dac dac   0 Sep 16 23:16 revs.sh
+-rw-rw-r-- 1 dac dac   2 Sep 16 23:26 text1.txt
+-rw-rw-r-- 1 dac dac   0 Sep 16 23:27 text2.txt

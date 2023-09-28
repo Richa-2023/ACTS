@@ -1,0 +1,137 @@
+create database college;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use college;
+Database changed
+mysql> create table student(roll int,name varchar(30),marks float,class varchar(10),age int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| roll  | int         | YES  |     | NULL    |       |
+| name  | varchar(30) | YES  |     | NULL    |       |
+| marks | float       | YES  |     | NULL    |       |
+| class | varchar(10) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into student values(1,'Ram',78.00,'A',22),
+    -> (2,'Shyam',56.14,'B',20),
+    -> (3,'Neha',85.15,'C',23),
+    -> (4,'Ashish',68.90,'A'
+    -> ,20);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|    1 | Ram    |    78 | A     |   22 |
+|    2 | Shyam  | 56.14 | B     |   20 |
+|    3 | Neha   | 85.15 | C     |   23 |
+|    4 | Ashish |  68.9 | A     |   20 |
++------+--------+-------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql> insert into student values(5,'Mayuri',65.37,'C',23), (6,'Richa',95.24,'B',20), (7,'Shubham',63.25,'A',20), (8,'Vedant',79.72,'B' ,20);
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+---------+-------+-------+------+
+| roll | name    | marks | class | age  |
++------+---------+-------+-------+------+
+|    1 | Ram     |    78 | A     |   22 |
+|    2 | Shyam   | 56.14 | B     |   20 |
+|    3 | Neha    | 85.15 | C     |   23 |
+|    4 | Ashish  |  68.9 | A     |   20 |
+|    5 | Mayuri  | 65.37 | C     |   23 |
+|    6 | Richa   | 95.24 | B     |   20 |
+|    7 | Shubham | 63.25 | A     |   20 |
+|    8 | Vedant  | 79.72 | B     |   20 |
++------+---------+-------+-------+------+
+8 rows in set (0.00 sec)
+
+mysql> delete from student where roll=4;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+---------+-------+-------+------+
+| roll | name    | marks | class | age  |
++------+---------+-------+-------+------+
+|    1 | Ram     |    78 | A     |   22 |
+|    2 | Shyam   | 56.14 | B     |   20 |
+|    3 | Neha    | 85.15 | C     |   23 |
+|    5 | Mayuri  | 65.37 | C     |   23 |
+|    6 | Richa   | 95.24 | B     |   20 |
+|    7 | Shubham | 63.25 | A     |   20 |
+|    8 | Vedant  | 79.72 | B     |   20 |
++------+---------+-------+-------+------+
+7 rows in set (0.00 sec)
+
+mysql> update student set marks=90.76 where roll=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+---------+-------+-------+------+
+| roll | name    | marks | class | age  |
++------+---------+-------+-------+------+
+|    1 | Ram     |    78 | A     |   22 |
+|    2 | Shyam   | 56.14 | B     |   20 |
+|    3 | Neha    | 90.76 | C     |   23 |
+|    5 | Mayuri  | 65.37 | C     |   23 |
+|    6 | Richa   | 95.24 | B     |   20 |
+|    7 | Shubham | 63.25 | A     |   20 |
+|    8 | Vedant  | 79.72 | B     |   20 |
++------+---------+-------+-------+------+
+7 rows in set (0.00 sec)
+
+mysql> update student set marks=marks+0.5;
+Query OK, 7 rows affected (0.01 sec)
+Rows matched: 7  Changed: 7  Warnings: 0
+
+mysql> select * from student;
++------+---------+-------+-------+------+
+| roll | name    | marks | class | age  |
++------+---------+-------+-------+------+
+|    1 | Ram     |  78.5 | A     |   22 |
+|    2 | Shyam   | 56.64 | B     |   20 |
+|    3 | Neha    | 91.26 | C     |   23 |
+|    5 | Mayuri  | 65.87 | C     |   23 |
+|    6 | Richa   | 95.74 | B     |   20 |
+|    7 | Shubham | 63.75 | A     |   20 |
+|    8 | Vedant  | 80.22 | B     |   20 |
++------+---------+-------+-------+------+
+7 rows in set (0.00 sec)
+
+mysql> truncate table student;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into student values(101,'Raj',78.10,'B',23);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(102,'Nisha',96.14,'A',22);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(103,'Vedant',69.46,'B',20);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values(104,'Isha',56.75,'B',23);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  78.1 | B     |   23 |
+|  102 | Nisha  | 96.14 | A     |   22 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 56.75 | B     |   23 |
++------+--------+-------+-------+------+
+4 rows in set (0.00 sec)
+

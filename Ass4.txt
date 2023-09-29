@@ -1,0 +1,841 @@
+
+mysql> use college;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  78.1 | B     |   23 |
+|  102 | Nisha  | 96.14 | A     |   22 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 56.75 | B     |   23 |
++------+--------+-------+-------+------+
+4 rows in set (0.01 sec)
+
+
+mysql> insert into student values (105,'ram',65.34,'c',20);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values (106,'ramesh',48.29,'c',30),
+    -> (107,'ashok',48.98,'A',24);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into student values (108,'sita',87.89,'A',23), (109,'siya',50.00,'B',20);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  78.1 | B     |   23 |
+|  102 | Nisha  | 96.14 | A     |   22 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 56.75 | B     |   23 |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 48.29 | c     |   30 |
+|  107 | ashok  | 48.98 | A     |   24 |
+|  108 | sita   | 87.89 | A     |   23 |
+|  109 | siya   |    50 | B     |   20 |
++------+--------+-------+-------+------+
+9 rows in set (0.00 sec)
+
+mysql> update student set marks=68.12 where roll in (106,107);
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  78.1 | B     |   23 |
+|  102 | Nisha  | 96.14 | A     |   22 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 56.75 | B     |   23 |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     |   30 |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  108 | sita   | 87.89 | A     |   23 |
+|  109 | siya   |    50 | B     |   20 |
++------+--------+-------+-------+------+
+9 rows in set (0.00 sec)
+
+
+mysql> update student set marks=76.45 where roll=109;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+mysql> update student set marks=82.69 where roll=104;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> alter table student modify column marks  float check(marks>=60 and marks<=100);
+Query OK, 9 rows affected (0.07 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  78.1 | B     |   23 |
+|  102 | Nisha  | 96.14 | A     |   22 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 82.69 | B     |   23 |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     |   30 |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  108 | sita   | 87.89 | A     |   23 |
+|  109 | siya   | 76.45 | B     |   20 |
++------+--------+-------+-------+------+
+9 rows in set (0.00 sec)
+
+mysql> delete from student where name='nisha';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  78.1 | B     |   23 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 82.69 | B     |   23 |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     |   30 |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  108 | sita   | 87.89 | A     |   23 |
+|  109 | siya   | 76.45 | B     |   20 |
++------+--------+-------+-------+------+
+8 rows in set (0.00 sec)
+
+
+mysql> update student set age=null where name='Isha';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update student set age=null where name='ramesh';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  78.1 | B     |   23 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 82.69 | B     | NULL |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     | NULL |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  108 | sita   | 87.89 | A     |   23 |
+|  109 | siya   | 76.45 | B     |   20 |
++------+--------+-------+-------+------+
+8 rows in set (0.00 sec)
+
+mysql> update student set marks=null where roll in (108,101);
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  NULL | B     |   23 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 82.69 | B     | NULL |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     | NULL |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  108 | sita   |  NULL | A     |   23 |
+|  109 | siya   | 76.45 | B     |   20 |
++------+--------+-------+-------+------+
+8 rows in set (0.00 sec)
+
+
+mysql> select sum(marks) from student ;
++-------------------+
+| sum(marks)        |
++-------------------+
+| 430.1800003051758 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(age) from student ;
++----------+
+| avg(age) |
++----------+
+|  21.6667 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(name) from student ;
++-------------+
+| count(name) |
++-------------+
+|           8 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  NULL | B     |   23 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 82.69 | B     | NULL |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     | NULL |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  108 | sita   |  NULL | A     |   23 |
+|  109 | siya   | 76.45 | B     |   20 |
++------+--------+-------+-------+------+
+8 rows in set (0.00 sec)
+
+mysql> select count(age) from student ;
++------------+
+| count(age) |
++------------+
+|          6 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select count(class) from student ;
++--------------+
+| count(class) |
++--------------+
+|            8 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select max(marks) from student ;
++------------+
+| max(marks) |
++------------+
+|      82.69 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select min(age) from student ;
++----------+
+| min(age) |
++----------+
+|       20 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select age,count(marks) from student group by age having age=20;
++------+--------------+
+| age  | count(marks) |
++------+--------------+
+|   20 |            3 |
++------+--------------+
+1 row in set (0.00 sec)
+
+
+mysql> select class,count(age) from student group by class;
++-------+------------+
+| class | count(age) |
++-------+------------+
+| B     |          3 |
+| c     |          1 |
+| A     |          2 |
++-------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where name like'%a';
++------+------+-------+-------+------+
+| roll | name | marks | class | age  |
++------+------+-------+-------+------+
+|  104 | Isha | 82.69 | B     | NULL |
+|  108 | sita |  NULL | A     |   23 |
+|  109 | siya | 76.45 | B     |   20 |
++------+------+-------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where name like'a%';
++------+-------+-------+-------+------+
+| roll | name  | marks | class | age  |
++------+-------+-------+-------+------+
+|  107 | ashok | 68.12 | A     |   24 |
++------+-------+-------+-------+------+
+1 row in set (0.01 sec)
+
+mysql> select * from student where name like'.a%';
+Empty set (0.00 sec)
+
+mysql> select * from student where name like '_a%';
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  NULL | B     |   23 |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     | NULL |
++------+--------+-------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where name like 'r__e%';
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  106 | ramesh | 68.12 | c     | NULL |
++------+--------+-------+-------+------+
+1 row in set (0.01 sec)
+
+
+mysql> select * from student where name like '%a__';
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  103 | Vedant | 69.46 | B     |   20 |
++------+--------+-------+-------+------+
+1 row in set (0.01 sec)
+
+mysql> select * from student where name like '--a%';
+Empty set (0.00 sec)
+
+mysql> select * from student where name like '__a%';
+Empty set (0.00 sec)
+
+mysql> select * from student where name like '_a%';
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  NULL | B     |   23 |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     | NULL |
++------+--------+-------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> select name from student order by class;
++--------+
+| name   |
++--------+
+| ashok  |
+| sita   |
+| Raj    |
+| Vedant |
+| Isha   |
+| siya   |
+| ram    |
+| ramesh |
++--------+
+8 rows in set (0.00 sec)
+
+mysql> select name,class from student order by class;
++--------+-------+
+| name   | class |
++--------+-------+
+| ashok  | A     |
+| sita   | A     |
+| Raj    | B     |
+| Vedant | B     |
+| Isha   | B     |
+| siya   | B     |
+| ram    | c     |
+| ramesh | c     |
++--------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select name,class from student order by age;
++--------+-------+
+| name   | class |
++--------+-------+
+| Isha   | B     |
+| ramesh | c     |
+| Vedant | B     |
+| ram    | c     |
+| siya   | B     |
+| Raj    | B     |
+| sita   | A     |
+| ashok  | A     |
++--------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select name,class,age from student order by age;
++--------+-------+------+
+| name   | class | age  |
++--------+-------+------+
+| Isha   | B     | NULL |
+| ramesh | c     | NULL |
+| Vedant | B     |   20 |
+| ram    | c     |   20 |
+| siya   | B     |   20 |
+| Raj    | B     |   23 |
+| sita   | A     |   23 |
+| ashok  | A     |   24 |
++--------+-------+------+
+8 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  NULL | B     |   23 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 82.69 | B     | NULL |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     | NULL |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  108 | sita   |  NULL | A     |   23 |
+|  109 | siya   | 76.45 | B     |   20 |
++------+--------+-------+-------+------+
+8 rows in set (0.00 sec)
+
+mysql> select roll,marks from student order by marks;
++------+-------+
+| roll | marks |
++------+-------+
+|  101 |  NULL |
+|  108 |  NULL |
+|  105 | 65.34 |
+|  106 | 68.12 |
+|  107 | 68.12 |
+|  103 | 69.46 |
+|  109 | 76.45 |
+|  104 | 82.69 |
++------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select roll,marks from student order by marks desc;
++------+-------+
+| roll | marks |
++------+-------+
+|  104 | 82.69 |
+|  109 | 76.45 |
+|  103 | 69.46 |
+|  106 | 68.12 |
+|  107 | 68.12 |
+|  105 | 65.34 |
+|  101 |  NULL |
+|  108 |  NULL |
++------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select roll,marks,age from student order by marks desc,age asc;
++------+-------+------+
+| roll | marks | age  |
++------+-------+------+
+|  104 | 82.69 | NULL |
+|  109 | 76.45 |   20 |
+|  103 | 69.46 |   20 |
+|  106 | 68.12 | NULL |
+|  107 | 68.12 |   24 |
+|  105 | 65.34 |   20 |
+|  101 |  NULL |   23 |
+|  108 |  NULL |   23 |
++------+-------+------+
+8 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  NULL | B     |   23 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 82.69 | B     | NULL |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     | NULL |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  108 | sita   |  NULL | A     |   23 |
+|  109 | siya   | 76.45 | B     |   20 |
++------+--------+-------+-------+------+
+8 rows in set (0.00 sec)
+
+mysql> select roll,marks,age from student order by marks asc,age desc;
++------+-------+------+
+| roll | marks | age  |
++------+-------+------+
+|  101 |  NULL |   23 |
+|  108 |  NULL |   23 |
+|  105 | 65.34 |   20 |
+|  107 | 68.12 |   24 |
+|  106 | 68.12 | NULL |
+|  103 | 69.46 |   20 |
+|  109 | 76.45 |   20 |
+|  104 | 82.69 | NULL |
++------+-------+------+
+8 rows in set (0.00 sec)
+
+mysql> select name,marks,age from student order by name asc,age desc,marks asc;
++--------+-------+------+
+| name   | marks | age  |
++--------+-------+------+
+| ashok  | 68.12 |   24 |
+| Isha   | 82.69 | NULL |
+| Raj    |  NULL |   23 |
+| ram    | 65.34 |   20 |
+| ramesh | 68.12 | NULL |
+| sita   |  NULL |   23 |
+| siya   | 76.45 |   20 |
+| Vedant | 69.46 |   20 |
++--------+-------+------+
+8 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  NULL | B     |   23 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 82.69 | B     | NULL |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     | NULL |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  108 | sita   |  NULL | A     |   23 |
+|  109 | siya   | 76.45 | B     |   20 |
++------+--------+-------+-------+------+
+8 rows in set (0.00 sec)
+
+mysql> select name,age,marks from student order by name asc,age desc,marks asc;
++--------+------+-------+
+| name   | age  | marks |
++--------+------+-------+
+| ashok  |   24 | 68.12 |
+| Isha   | NULL | 82.69 |
+| Raj    |   23 |  NULL |
+| ram    |   20 | 65.34 |
+| ramesh | NULL | 68.12 |
+| sita   |   23 |  NULL |
+| siya   |   20 | 76.45 |
+| Vedant |   20 | 69.46 |
++--------+------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select name,age,marks from student order by name asc;;
++--------+------+-------+
+| name   | age  | marks |
++--------+------+-------+
+| ashok  |   24 | 68.12 |
+| Isha   | NULL | 82.69 |
+| Raj    |   23 |  NULL |
+| ram    |   20 | 65.34 |
+| ramesh | NULL | 68.12 |
+| sita   |   23 |  NULL |
+| siya   |   20 | 76.45 |
+| Vedant |   20 | 69.46 |
++--------+------+-------+
+8 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> select name from student order by name asc;;
++--------+
+| name   |
++--------+
+| ashok  |
+| Isha   |
+| Raj    |
+| ram    |
+| ramesh |
+| sita   |
+| siya   |
+| Vedant |
++--------+
+8 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> select name from student order by name asc;
++--------+
+| name   |
++--------+
+| ashok  |
+| Isha   |
+| Raj    |
+| ram    |
+| ramesh |
+| sita   |
+| siya   |
+| Vedant |
++--------+
+8 rows in set (0.00 sec)
+
+mysql> select name,age,marks from student order by name asc;
++--------+------+-------+
+| name   | age  | marks |
++--------+------+-------+
+| ashok  |   24 | 68.12 |
+| Isha   | NULL | 82.69 |
+| Raj    |   23 |  NULL |
+| ram    |   20 | 65.34 |
+| ramesh | NULL | 68.12 |
+| sita   |   23 |  NULL |
+| siya   |   20 | 76.45 |
+| Vedant |   20 | 69.46 |
++--------+------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  NULL | B     |   23 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 82.69 | B     | NULL |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     | NULL |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  108 | sita   |  NULL | A     |   23 |
+|  109 | siya   | 76.45 | B     |   20 |
++------+--------+-------+-------+------+
+8 rows in set (0.00 sec)
+
+mysql> select name,age,marks from student order by name asc,age desc,marks asc;
++--------+------+-------+
+| name   | age  | marks |
++--------+------+-------+
+| ashok  |   24 | 68.12 |
+| Isha   | NULL | 82.69 |
+| Raj    |   23 |  NULL |
+| ram    |   20 | 65.34 |
+| ramesh | NULL | 68.12 |
+| sita   |   23 |  NULL |
+| siya   |   20 | 76.45 |
+| Vedant |   20 | 69.46 |
++--------+------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select name,age,marks from student order by age asc,name desc;
++--------+------+-------+
+| name   | age  | marks |
++--------+------+-------+
+| ramesh | NULL | 68.12 |
+| Isha   | NULL | 82.69 |
+| Vedant |   20 | 69.46 |
+| siya   |   20 | 76.45 |
+| ram    |   20 | 65.34 |
+| sita   |   23 |  NULL |
+| Raj    |   23 |  NULL |
+| ashok  |   24 | 68.12 |
++--------+------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select name,age,marks from student order by age asc;
++--------+------+-------+
+| name   | age  | marks |
++--------+------+-------+
+| Isha   | NULL | 82.69 |
+| ramesh | NULL | 68.12 |
+| Vedant |   20 | 69.46 |
+| ram    |   20 | 65.34 |
+| siya   |   20 | 76.45 |
+| Raj    |   23 |  NULL |
+| sita   |   23 |  NULL |
+| ashok  |   24 | 68.12 |
++--------+------+-------+
+8 rows in set (0.00 sec)
+
+mysql>  select age from student;
++------+
+| age  |
++------+
+|   23 |
+|   20 |
+| NULL |
+|   20 |
+| NULL |
+|   24 |
+|   23 |
+|   20 |
++------+
+8 rows in set (0.01 sec)
+
+mysql>  select distinct age from student;
++------+
+| age  |
++------+
+|   23 |
+|   20 |
+| NULL |
+|   24 |
++------+
+4 rows in set (0.00 sec)
+
+mysql> select class,name from student;
++-------+--------+
+| class | name   |
++-------+--------+
+| B     | Raj    |
+| B     | Vedant |
+| B     | Isha   |
+| c     | ram    |
+| c     | ramesh |
+| A     | ashok  |
+| A     | sita   |
+| B     | siya   |
++-------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select distinct class,name from student;
++-------+--------+
+| class | name   |
++-------+--------+
+| B     | Raj    |
+| B     | Vedant |
+| B     | Isha   |
+| c     | ram    |
+| c     | ramesh |
+| A     | ashok  |
+| A     | sita   |
+| B     | siya   |
++-------+--------+
+8 rows in set (0.01 sec)
+
+mysql> select distinct class from student;
++-------+
+| class |
++-------+
+| B     |
+| c     |
+| A     |
++-------+
+3 rows in set (0.00 sec)
+
+
+mysql> select * from student where roll between 103 and 107;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 82.69 | B     | NULL |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     | NULL |
+|  107 | ashok  | 68.12 | A     |   24 |
++------+--------+-------+-------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student where roll between 103 and 110;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 82.69 | B     | NULL |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     | NULL |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  108 | sita   |  NULL | A     |   23 |
+|  109 | siya   | 76.45 | B     |   20 |
++------+--------+-------+-------+------+
+7 rows in set (0.00 sec)
+
+mysql> select * from student where roll between 100 and 110;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  NULL | B     |   23 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 82.69 | B     | NULL |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     | NULL |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  108 | sita   |  NULL | A     |   23 |
+|  109 | siya   | 76.45 | B     |   20 |
++------+--------+-------+-------+------+
+8 rows in set (0.00 sec)
+
+mysql> select roll,marks,name from student where name between 'Isha' and 'ashok';
+Empty set (0.00 sec)
+
+mysql> select * from student;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  NULL | B     |   23 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 82.69 | B     | NULL |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     | NULL |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  108 | sita   |  NULL | A     |   23 |
+|  109 | siya   | 76.45 | B     |   20 |
++------+--------+-------+-------+------+
+8 rows in set (0.00 sec)
+
+mysql> select roll,marks,name from student where name between 'raj' and 'vedant';
++------+-------+--------+
+| roll | marks | name   |
++------+-------+--------+
+|  101 |  NULL | Raj    |
+|  103 | 69.46 | Vedant |
+|  105 | 65.34 | ram    |
+|  106 | 68.12 | ramesh |
+|  108 |  NULL | sita   |
+|  109 | 76.45 | siya   |
++------+-------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student where roll is null;
+Empty set (0.00 sec)
+
+mysql> select * from student where marks is null;
++------+------+-------+-------+------+
+| roll | name | marks | class | age  |
++------+------+-------+-------+------+
+|  101 | Raj  |  NULL | B     |   23 |
+|  108 | sita |  NULL | A     |   23 |
++------+------+-------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where marks is not null;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  103 | Vedant | 69.46 | B     |   20 |
+|  104 | Isha   | 82.69 | B     | NULL |
+|  105 | ram    | 65.34 | c     |   20 |
+|  106 | ramesh | 68.12 | c     | NULL |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  109 | siya   | 76.45 | B     |   20 |
++------+--------+-------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student where age is null;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  104 | Isha   | 82.69 | B     | NULL |
+|  106 | ramesh | 68.12 | c     | NULL |
++------+--------+-------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student where age is not null;
++------+--------+-------+-------+------+
+| roll | name   | marks | class | age  |
++------+--------+-------+-------+------+
+|  101 | Raj    |  NULL | B     |   23 |
+|  103 | Vedant | 69.46 | B     |   20 |
+|  105 | ram    | 65.34 | c     |   20 |
+|  107 | ashok  | 68.12 | A     |   24 |
+|  108 | sita   |  NULL | A     |   23 |
+|  109 | siya   | 76.45 | B     |   20 |
++------+--------+-------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> select roll,name from student where name in ('ashok','sita');
++------+-------+
+| roll | name  |
++------+-------+
+|  107 | ashok |
+|  108 | sita  |
++------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select roll,name from student where name not in ('ashok','sita');
++------+--------+
+| roll | name   |
++------+--------+
+|  101 | Raj    |
+|  103 | Vedant |
+|  104 | Isha   |
+|  105 | ram    |
+|  106 | ramesh |
+|  109 | siya   |
++------+--------+
+6 rows in set (0.00 sec)
+

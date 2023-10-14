@@ -1,6 +1,6 @@
 package com.app.fruits;
 
-public class Fruit {
+abstract public class Fruit {
 private String color;
 private double weight;
 private String name;
@@ -38,10 +38,7 @@ public String toString()
 	return "Name: "+this.name+" \nColor: "+this.color+"\nWeight: "+this.weight;
 	
 }
-public String taste()
-{
-	return "no specific taste";
-}
+abstract public String taste();
 
 public String nameOfFruit()
 {
